@@ -1,0 +1,43 @@
+﻿@page
+@model WebApplication6.Pages.EmployeeModel
+@{
+    ViewData["Title"] = "Employee page";
+}
+
+<h1>Employee list</h1>
+<a class='btn btn-primary' href='/CreateEmp'>Add New Employee</a> 
+<table class="table">
+    <thead>
+        <tr>
+             <th>ID</th>
+            <th>NAME</th>
+            <th>DOJ</th>
+                <th>BASEOFFICE</th>
+                    <th>DESIGNATION</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var emp in Model.listofemployees)
+        {
+        <tr>
+            <td style="color:red">@emp.id</td>
+            <td>@emp.name</td> 
+             <td>@emp.stringdate</td>
+             <td>@emp.baseoff</td>
+             <td>@emp.des</td>
+             <td> <a class="btn btn-primary btn-sm" href="/EditEmployee?id=@emp.id">Edit</a> </td>
+              <td> <a class="btn btn-primary btn-sm" href="/DeleteEmployee?id=@emp.id">Delete</a> </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+

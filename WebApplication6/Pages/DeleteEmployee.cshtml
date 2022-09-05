@@ -1,0 +1,28 @@
+﻿@page
+@model WebApplication6.Pages.DeleteEmployeeModel
+@using System.Data.SqlClient;
+@{
+ try
+            {
+                 string strid = Request.Query["baseoff"];
+                int id = Convert.ToInt32(strid);
+                string connectionstring = "Data Source=DESKTOP-1UU1KC8\\MSSQLSERVER1;Initial Catalog=student;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                SqlConnection sqlconn = new SqlConnection(connectionstring);
+                sqlconn.Open();
+                string QueryString = "delete from EmpInfo where EmpId=@id";
+                Console.WriteLine(QueryString);
+                using (SqlCommand cmd = new SqlCommand(QueryString, sqlconn))
+                { 
+                    cmd.Parameters.AddWithValue("@id", id);
+                    Console.WriteLine(QueryString);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+         Response.Redirect("/Employee");
+ }
+<h1>Delete Employee</h1>
